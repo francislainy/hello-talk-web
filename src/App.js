@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
+import HelloTalkScreen from './screens/HelloTalkScreen';
+import MomentsScreen from './screens/MomentsScreen';
+import ConnectScreen from './screens/ConnectScreen';
+import LearnScreen from './screens/LearnScreen';
+import MeScreen from './screens/MeScreen';
+import NavBar from "./Navbar";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <NavBar/>
+            <div className="app">
+                <Routes>
+                    <Route path="/" exact element={<HelloTalkScreen/>}/>
+                    <Route path="/moments" exact element={<MomentsScreen/>}/>
+                    <Route path="/connect" exact element={<ConnectScreen/>}/>
+                    <Route path="/learn" exact element={<LearnScreen/>}/>
+                    <Route path="/me" exact element={<MeScreen/>}/>
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
