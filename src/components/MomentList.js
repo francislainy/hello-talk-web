@@ -2,7 +2,6 @@ import React from 'react';
 import MomentItem from './MomentItem';
 
 function MomentList({ moments }) {
-
   return (
     <div>
       {moments.map((moment) => (

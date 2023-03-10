@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import MomentList from "../components/MomentList";
+import {GET_MOMENTS} from "../api/endpoints";
 
 function MomentsScreen() {
 
-    const moments = [
-        {
-            id: 1,
-            title: 'My first moment',
-            description: 'This is my first moment on the app!',
-            image: 'https://example.com/my-image.jpg',
-        },
-        {
-            id: 2,
-            title: 'Another moment',
-            description: 'This is another moment on the app.',
-            image: 'https://example.com/another-image.jpg',
-        },
-        {
-            id: 3,
-            title: 'Third moment',
-            description: 'This is the third moment on the app.',
-            image: 'https://example.com/third-image.jpg',
-        },
-    ];
+    const [moments, setMoments] = useState([]);
+
+    useEffect(() => {
+        const fetchMoments = () => {
+            return new Promise((resolve, reject) => {
+                axios.get(GET_MOMENTS)
+                    .then(response => resolve(response.data))
+                    .catch(error => reject(error));
+            });
+        };
+
+        fetchMoments().then(data => setMoments(data));
+    }, []);
+
 
     return (
         <div>
