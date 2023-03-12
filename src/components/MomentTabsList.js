@@ -7,9 +7,9 @@ function MomentTabsList({tabs, selectedTab, onClick}) {
     };
 
     return (
-        <Tabs value={selectedTab} onChange={handleChange}>
+        <Tabs value={selectedTab} onChange={handleChange} textColor="secondary">
             {tabs.map((tab, index) => (
-                <Tab key={index} label={tab.label} />
+                <Tab key={index} label={tab.label}/>
             ))}
         </Tabs>
     );
