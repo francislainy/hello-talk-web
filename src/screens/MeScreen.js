@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ConnectScreen() {
+function MeScreen() {
     return (
         <div>
             <h1>MeScreen</h1>
@@ -9,4 +9,4 @@ function ConnectScreen() {
     );
 }
 
-export default ConnectScreen;
+export default MeScreen;

@@ -53,7 +53,6 @@ function MomentsScreen() {
     return (
         <div>
             <h1>MomentsScreen</h1>
-            <p>This is the moment page</p>
             <MomentTabsList tabs={tabs} selectedTab={selectedTab} onClick={handleTabClick}/>
             {error === '' ?
                 <MomentList moments={moments}/> : <p>{error}</p>

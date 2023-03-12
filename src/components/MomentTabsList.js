@@ -1,23 +1,17 @@
+import {Tab, Tabs} from "@material-ui/core";
+
 function MomentTabsList({tabs, selectedTab, onClick}) {
-    const handleClick = (index) => {
-        onClick(index);
+
+    const handleChange = (event, newValue) => {
+        onClick(newValue);
     };
 
     return (
-        <div>
+        <Tabs value={selectedTab} onChange={handleChange}>
             {tabs.map((tab, index) => (
-                <button
-                    key={index}
-                    onClick={() => handleClick(index)}
-                    style={{
-                        backgroundColor: selectedTab === index ? 'blue' : 'white',
-                        color: selectedTab === index ? 'white' : 'black',
-                    }}
-                >
-                    {tab.label}
-                </button>
+                <Tab key={index} label={tab.label} />
             ))}
-        </div>
+        </Tabs>
     );
 }
 
