@@ -6,6 +6,7 @@ import MomentTabsList from "../components/MomentTabsList";
 
 function MomentsScreen() {
     const [moments, setMoments] = useState([]);
+    const [error, setError] = useState('');
     const [selectedTab, setSelectedTab] = useState(0);
 
     const tabs = [
@@ -33,11 +34,20 @@ function MomentsScreen() {
                 const selectedTabParam = getSelectedTabParam();
                 axios.get(`${GET_MOMENTS}${selectedTabParam}`)
                     .then(response => resolve(response.data))
-                    .catch(error => reject(error));
+                    .catch(error => {
+                        reject(error)
+                    });
             });
         };
 
-        fetchMoments().then(data => setMoments(data));
+        fetchMoments().then(data => {
+            setMoments(data)
+            setError('')
+        })
+            .catch(r => {
+                setError('Nothing to show here')
+                setMoments([])
+            });
     }, [selectedTab]);
 
     return (
@@ -45,7 +55,9 @@ function MomentsScreen() {
             <h1>MomentsScreen</h1>
             <p>This is the moment page</p>
             <MomentTabsList tabs={tabs} selectedTab={selectedTab} onClick={handleTabClick}/>
-            <MomentList moments={moments}/>
+            {error === '' ?
+                <MomentList moments={moments}/> : <p>{error}</p>
+            }
         </div>
     );
 }
