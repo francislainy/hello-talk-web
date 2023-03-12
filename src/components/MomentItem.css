@@ -1,0 +1,8 @@
+.Link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.Link:visited {
+    color: inherit;
+}

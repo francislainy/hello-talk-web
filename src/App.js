@@ -6,6 +6,7 @@ import MomentsScreen from './screens/MomentsScreen';
 import ConnectScreen from './screens/ConnectScreen';
 import LearnScreen from './screens/LearnScreen';
 import MeScreen from './screens/MeScreen';
+import MomentDetailScreen from './screens/MomentDetailScreen';
 import NavBar from "./Navbar";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/connect" exact element={<ConnectScreen/>}/>
                     <Route path="/learn" exact element={<LearnScreen/>}/>
                     <Route path="/me" exact element={<MeScreen/>}/>
+                    <Route path="/moment/:id" exact element={<MomentDetailScreen />} />
                 </Routes>
             </div>
         </Router>

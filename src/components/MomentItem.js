@@ -1,12 +1,15 @@
 import React from 'react';
+import {Link} from "react-router-dom";
+import './MomentItem.css'
 
-function MomentItem({ moment }) {
+function MomentItem({moment}) {
     return (
-        <div>
-            <h3>{moment.id}</h3>
-            <p>{moment.text}</p>
-            <img src={moment.imageUrl} alt={moment.title} />
-        </div>
+        <Link to={`/moment/${moment.id}`} className="Link">
+            <div>
+                <h3>{moment.id}</h3>
+                <p>{moment.text}</p>
+            </div>
+        </Link>
     );
 }
 
