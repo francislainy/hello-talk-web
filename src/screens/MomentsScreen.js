@@ -22,7 +22,7 @@ function MomentsScreen() {
         setSelectedTab(tabIndex);
     };
 
-    const getSelectedTabText = () => {
+    const getSelectedTabParam = () => {
         const tab = tabs[selectedTab];
         return tab.param;
     };
@@ -30,8 +30,8 @@ function MomentsScreen() {
     useEffect(() => {
         const fetchMoments = () => {
             return new Promise((resolve, reject) => {
-                const selectedTabText = getSelectedTabText();
-                axios.get(`${GET_MOMENTS}${selectedTabText}`)
+                const selectedTabParam = getSelectedTabParam();
+                axios.get(`${GET_MOMENTS}${selectedTabParam}`)
                     .then(response => resolve(response.data))
                     .catch(error => reject(error));
             });
