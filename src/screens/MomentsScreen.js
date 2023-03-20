@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import MomentList from "../components/MomentList";
 import {GET_MOMENTS} from "../api/endpoints";
-import MomentTabsList from "../components/MomentTabsList";
+import TabsList from "../components/TabsList";
 
 function MomentsScreen() {
     const [moments, setMoments] = useState([]);
@@ -53,7 +53,7 @@ function MomentsScreen() {
     return (
         <div>
             <h1>MomentsScreen</h1>
-            <MomentTabsList tabs={tabs} selectedTab={selectedTab} onClick={handleTabClick}/>
+            <TabsList tabs={tabs} selectedTab={selectedTab} onClick={handleTabClick}/>
             {error === '' ?
                 <MomentList moments={moments}/> : <p>{error}</p>
             }

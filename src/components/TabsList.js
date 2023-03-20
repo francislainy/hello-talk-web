@@ -1,6 +1,6 @@
 import {Tab, Tabs} from "@material-ui/core";
 
-function MomentTabsList({tabs, selectedTab, onClick}) {
+function TabsList({tabs, selectedTab, onClick}) {
 
     const handleChange = (event, newValue) => {
         onClick(newValue);
@@ -15,4 +15,4 @@ function MomentTabsList({tabs, selectedTab, onClick}) {
     );
 }
 
-export default MomentTabsList
+export default TabsList
