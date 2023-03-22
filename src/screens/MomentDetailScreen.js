@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {GET_MOMENTS} from "../api/endpoints";
 import {useParams} from "react-router-dom";
+import MomentDetailItem from "../components/MomentDetailItem";
 
 function MomentDetail() {
 
@@ -30,10 +31,7 @@ function MomentDetail() {
     }
 
     return (
-        <div>
-            <h3>{moment.id}</h3>
-            <p>{moment.text}</p>
-        </div>
+       <MomentDetailItem moment = {moment}/>
     );
 }
 
