@@ -8,6 +8,7 @@ function ListItem({moment}) {
             <div>
                 <h3>{moment.id}</h3>
                 <p>{moment.text}</p>
+                <p>{moment.text}</p>
             </div>
         </Link>
     );

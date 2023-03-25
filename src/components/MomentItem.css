@@ -1,3 +1,7 @@
+.MomentItem {
+user-select: none;
+}
+
 .Link {
     color: inherit;
     text-decoration: none;
