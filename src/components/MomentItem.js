@@ -3,7 +3,9 @@ import {useNavigate} from "react-router-dom";
 import './MomentItem.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart} from "@fortawesome/free-solid-svg-icons";
-
+import axios from "axios";
+import {USERS} from "../api/endpoints";
+import {USER_ID} from "./constants";
 
 function MomentItem({moment}) {
 
@@ -14,6 +16,17 @@ function MomentItem({moment}) {
         event.stopPropagation(); // prevent event from propagating to parent element
         // make API call to toggle like status
         setIsLiked(!isLiked);
+
+        await likeMoment();
+    };
+
+    const likeMoment = async () => {
+        try {
+            const userId = USER_ID
+            await axios.post(`${USERS}${userId}/like/${moment.id}`);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const navigateToMoment = () => {
@@ -29,7 +42,7 @@ function MomentItem({moment}) {
                     <FontAwesomeIcon
                         icon={faHeart}
                         className={`HeartIcon ${isLiked ? 'Liked' : ''}`}
-                        style={{ color: isLiked ? 'red' : 'black' }}
+                        style={{color: isLiked ? 'red' : 'black'}}
                         onClick={toggleLike}
                     />
                 </div>
