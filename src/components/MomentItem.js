@@ -8,6 +8,7 @@ function MomentItem({moment}) {
             <div>
                 <h3>{moment.id}</h3>
                 <p>{moment.text}</p>
+                <p>{moment.numLikes}</p>
             </div>
         </Link>
     );
