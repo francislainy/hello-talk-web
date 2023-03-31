@@ -15,15 +15,19 @@ function MomentItem({moment}) {
     const toggleLike = async (event) => {
         event.stopPropagation(); // prevent event from propagating to parent element
         // make API call to toggle like status
-        setIsLiked(!isLiked);
 
-        await likeMoment();
+        if (moment.userCreatorId !== USER_ID) {
+            setIsLiked(!isLiked);
+
+            await likeMoment();
+        } else {
+            alert("Users can't like their own moments")
+        }
     };
 
     const likeMoment = async () => {
         try {
-            const userId = USER_ID
-            await axios.post(`${USERS}${userId}/like/${moment.id}`);
+            await axios.post(`${USERS}${USER_ID}/like/${moment.id}`);
         } catch (error) {
             console.error(error);
         }
