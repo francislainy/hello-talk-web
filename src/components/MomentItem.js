@@ -49,7 +49,6 @@ function MomentItem({moment}) {
                         <FontAwesomeIcon
                             icon={faHeart}
                             className={`HeartIcon ${isLiked ? "Liked" : ""}`}
-                            style={{color: isLiked ? "red" : "black"}}
                             onClick={toggleLike}
                         />
                     </div>
