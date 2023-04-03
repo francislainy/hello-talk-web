@@ -44,15 +44,17 @@ function MomentItem({moment}) {
                 <UserSnippet userId={moment.userCreatorId}/>
                 <h3>{moment.id}</h3>
                 <p>{moment.text}</p>
-                <div onClick={toggleLike}>
-                    <FontAwesomeIcon
-                        icon={faHeart}
-                        className={`HeartIcon ${isLiked ? 'Liked' : ''}`}
-                        style={{color: isLiked ? 'red' : 'black'}}
-                        onClick={toggleLike}
-                    />
+                <div className="likeSection">
+                    <div onClick={toggleLike}>
+                        <FontAwesomeIcon
+                            icon={faHeart}
+                            className={`HeartIcon ${isLiked ? "Liked" : ""}`}
+                            style={{color: isLiked ? "red" : "black"}}
+                            onClick={toggleLike}
+                        />
+                    </div>
+                    <p style={{marginLeft: "5px"}}>{moment.numLikes}</p>
                 </div>
-                <p>{moment.numLikes}</p>
             </div>
         </div>
     );
