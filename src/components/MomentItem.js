@@ -6,6 +6,7 @@ import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import {USERS} from "../api/endpoints";
 import {USER_ID} from "./constants";
+import UserSnippet from "./UserSnippet";
 
 function MomentItem({moment}) {
 
@@ -40,6 +41,7 @@ function MomentItem({moment}) {
     return (
         <div className="MomentItem" onClick={navigateToMoment}>
             <div>
+                <UserSnippet userId={moment.userCreatorId}/>
                 <h3>{moment.id}</h3>
                 <p>{moment.text}</p>
                 <div onClick={toggleLike}>

@@ -20,7 +20,7 @@ function MomentDetail() {
             }
         };
 
-        fetchMoment();
+        fetchMoment().then(() => "Moment fetched successfully");
     }, [id]);
 
     if (!moment) {
@@ -31,7 +31,7 @@ function MomentDetail() {
     }
 
     return (
-       <MomentDetailItem moment = {moment}/>
+        <MomentDetailItem moment={moment}/>
     );
 }
 
