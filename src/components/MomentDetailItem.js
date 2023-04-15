@@ -1,10 +1,9 @@
 import React from 'react';
+import MomentItem from "./MomentItem";
 
 function MomentDetailItem({moment}) {
     return <div>
-        <h3>{moment.id}</h3>
-        <p>{moment.text}</p>
-        <p>{moment.numLikes}</p>
+        <MomentItem moment={moment}/>
     </div>
 }
 

@@ -10,7 +10,7 @@ import UserSnippet from "./UserSnippet";
 
 function MomentItem({moment}) {
 
-    const [isLiked, setIsLiked] = useState(false);
+    const [isLiked, setIsLiked] = useState(moment.likedByIds.includes(USER_ID));
     const navigate = useNavigate();
 
     const toggleLike = async (event) => {
@@ -19,8 +19,10 @@ function MomentItem({moment}) {
 
         if (moment.userCreatorId !== USER_ID) {
             setIsLiked(!isLiked);
-
             await likeMoment();
+
+            moment.numLikes = isLiked ? moment.numLikes - 1 : moment.numLikes + 1;
+
         } else {
             alert("Users can't like their own moments")
         }
