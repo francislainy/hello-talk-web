@@ -9,22 +9,21 @@ import {USER_ID} from "./constants";
 import UserSnippet from "./UserSnippet";
 
 function MomentItem({moment}) {
-
     const [isLiked, setIsLiked] = useState(moment.likedByIds.includes(USER_ID));
+    const [numLikes, setNumLikes] = useState(moment.numLikes);
     const navigate = useNavigate();
 
     const toggleLike = async (event) => {
         event.stopPropagation(); // prevent event from propagating to parent element
-        // make API call to toggle like status
 
         if (moment.userCreatorId !== USER_ID) {
             setIsLiked(!isLiked);
+            const deltaLikes = isLiked ? -1 : 1; // if isLiked is true, then subtract 1, otherwise add 1
+            setNumLikes(numLikes + deltaLikes);
+
             await likeMoment();
-
-            moment.numLikes = isLiked ? moment.numLikes - 1 : moment.numLikes + 1;
-
         } else {
-            alert("Users can't like their own moments")
+            alert("Users can't like their own moments");
         }
     };
 
@@ -51,10 +50,9 @@ function MomentItem({moment}) {
                         <FontAwesomeIcon
                             icon={faHeart}
                             className={`HeartIcon ${isLiked ? "Liked" : ""}`}
-                            onClick={toggleLike}
                         />
                     </div>
-                    <p style={{marginLeft: "5px"}}>{moment.numLikes}</p>
+                    <p style={{marginLeft: "5px"}}>{numLikes}</p>
                 </div>
             </div>
         </div>
