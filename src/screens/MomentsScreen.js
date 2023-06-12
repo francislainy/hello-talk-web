@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
 import MomentList from "../components/MomentList";
-import {GET_MOMENTS} from "../api/endpoints";
 import TabsList from "../components/TabsList";
+import {getMomentsApi} from "../api/api";
 
 function MomentsScreen() {
     const [moments, setMoments] = useState([]);
@@ -32,9 +31,12 @@ function MomentsScreen() {
         const fetchMoments = () => {
             return new Promise((resolve, reject) => {
                 const selectedTabParam = getSelectedTabParam();
-                axios.get(`${GET_MOMENTS}${selectedTabParam}`)
-                    .then(response => resolve(response.data))
+                getMomentsApi(selectedTabParam)
+                    .then(response => {
+                        resolve(response.data)
+                    })
                     .catch(error => {
+                        console.log(error)
                         reject(error)
                     });
             });
@@ -45,7 +47,7 @@ function MomentsScreen() {
             setError('')
         })
             .catch(r => {
-                setError('Nothing to show here')
+                setError('Nothing to show here' + r)
                 setMoments([])
             });
     }, [selectedTab]);

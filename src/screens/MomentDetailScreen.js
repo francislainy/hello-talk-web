@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
-import {GET_MOMENTS} from "../api/endpoints";
 import {useParams} from "react-router-dom";
 import MomentDetailItem from "../components/MomentDetailItem";
+import {getMomentApi} from "../api/api";
 
 function MomentDetail() {
 
@@ -13,7 +12,7 @@ function MomentDetail() {
     useEffect(() => {
         const fetchMoment = async () => {
             try {
-                const response = await axios.get(`${GET_MOMENTS}${id}`);
+                const response = await getMomentApi(id);
                 setMoment(response.data);
             } catch (error) {
                 console.error(error);

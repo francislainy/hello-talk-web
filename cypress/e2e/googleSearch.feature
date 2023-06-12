@@ -1,6 +1,7 @@
 Feature: Google Search
 
-  Scenario: Searching for chat gpt on Google
-    Given I open Google page
+  Scenario: Search for chat gpt on Google
+    Given I am on the Google home page
+    And I accept the cookies
     When I search for "chat gpt"
-    Then I see "chat gpt" in the results
+    Then I see search results related to "chat gpt"

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import {USERS} from "../api/endpoints";
 import './UserSnippet.css'
+import {getUserApi} from "../api/api";
 
 function UserSnippet({userId}) {
 
@@ -9,7 +8,7 @@ function UserSnippet({userId}) {
 
     const getUserDetail = async () => {
         try {
-            const response = await axios.get(`${USERS}${userId}`);
+            const response = await getUserApi(userId);
             setUserData(response.data)
         } catch (error) {
             console.error(error);

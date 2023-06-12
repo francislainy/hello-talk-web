@@ -3,10 +3,9 @@ import {useNavigate} from "react-router-dom";
 import './MomentItem.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart} from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import {USERS} from "../api/endpoints";
 import {USER_ID} from "./constants";
 import UserSnippet from "./UserSnippet";
+import {likeMomentApi} from "../api/api";
 
 function MomentItem({moment}) {
     const [isLiked, setIsLiked] = useState(moment.likedByIds.includes(USER_ID));
@@ -29,7 +28,7 @@ function MomentItem({moment}) {
 
     const likeMoment = async () => {
         try {
-            await axios.post(`${USERS}${USER_ID}/like/${moment.id}`);
+            await likeMomentApi(USER_ID, moment.id)
         } catch (error) {
             console.error(error);
         }
