@@ -6,6 +6,7 @@ import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import {USER_ID} from "./constants";
 import UserSnippet from "./UserSnippet";
 import {likeMomentApi} from "../api/api";
+import CommentList from "./CommentList";
 
 function MomentItem({moment}) {
     const [isLiked, setIsLiked] = useState(moment.likedByIds.includes(USER_ID));
@@ -53,6 +54,7 @@ function MomentItem({moment}) {
                     </div>
                     <p style={{marginLeft: "5px"}}>{numLikes}</p>
                 </div>
+                <CommentList momentId={moment.id} />
             </div>
         </div>
     );

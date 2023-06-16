@@ -49,6 +49,17 @@ const getMomentsUserApi = (userId = USER_ID, baseUrl = BASE_URL) => {
     });
 };
 
+const getCommentsApi = (momentId, baseUrl = BASE_URL) => {
+    return axios.get(`${baseUrl}/moments/${momentId}/comments`, {
+        baseURL: BASE_URL,
+        headers: {Accept: "application/json"},
+        auth: {
+            username: USERNAME,
+            password: PASSWORD,
+        },
+    });
+};
+
 const likeMomentApi = (userId, momentId, baseUrl = BASE_URL) => {
     return axios.post(`${baseUrl}/users/${userId}/like/${momentId}`, null,{
         baseURL: BASE_URL,
@@ -61,4 +72,4 @@ const likeMomentApi = (userId, momentId, baseUrl = BASE_URL) => {
 };
 
 
-export {getUserApi, getMomentsApi, getMomentApi, likeMomentApi, getMomentsUserApi};
+export {getUserApi, getMomentsApi, getMomentApi, likeMomentApi, getMomentsUserApi, getCommentsApi};
