@@ -1,8 +1,20 @@
 import axios from 'axios';
+import {USER_ID} from "../components/constants";
 
 const BASE_URL = "http://localhost:8081/api/v1/ht";
 const USERNAME = "usernamed";
 const PASSWORD = "passwordd";
+
+const getUserApi = (userId, baseUrl = BASE_URL) => {
+    return axios.get(`${baseUrl}/users/${userId}`, {
+        baseURL: BASE_URL,
+        headers: {Accept: "application/json"},
+        auth: {
+            username: USERNAME,
+            password: PASSWORD,
+        },
+    });
+};
 
 const getMomentsApi = (baseUrl = BASE_URL) => {
     return axios.get(`${baseUrl}/moments/`, {
@@ -26,9 +38,8 @@ const getMomentApi = (momentId, baseUrl = BASE_URL) => {
     });
 };
 
-
-const getUserApi = (userId, baseUrl = BASE_URL) => {
-    return axios.get(`${baseUrl}/users/${userId}`, {
+const getMomentsUserApi = (userId = USER_ID, baseUrl = BASE_URL) => {
+    return axios.get(`${baseUrl}/moments/user?userId=${userId}`, {
         baseURL: BASE_URL,
         headers: {Accept: "application/json"},
         auth: {
@@ -50,4 +61,4 @@ const likeMomentApi = (userId, momentId, baseUrl = BASE_URL) => {
 };
 
 
-export {getMomentsApi, getMomentApi, likeMomentApi, getUserApi};
+export {getUserApi, getMomentsApi, getMomentApi, likeMomentApi, getMomentsUserApi};
