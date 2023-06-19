@@ -1,21 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import './MomentItem.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import {faThumbsUp, faComment} from "@fortawesome/free-solid-svg-icons";
 import {USER_ID} from "./constants";
 import UserSnippet from "./UserSnippet";
-import {likeMomentApi} from "../api/api";
+import {getCommentsApi, likeMomentApi} from "../api/api";
 import CommentList from "./CommentList";
 
 function MomentItem({moment}) {
     const [isLiked, setIsLiked] = useState(moment.likedByIds.includes(USER_ID));
     const [numLikes, setNumLikes] = useState(moment.numLikes);
+    const [comments, setComments] = useState([]);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    const navigateToMoment = () => {
+        navigate(`/moment/${moment.id}`);
+    };
 
     const toggleLike = async (event) => {
         event.stopPropagation(); // prevent event from propagating to parent element
-
         if (moment.userCreatorId !== USER_ID) {
             setIsLiked(!isLiked);
             const deltaLikes = isLiked ? -1 : 1; // if isLiked is true, then subtract 1, otherwise add 1
@@ -35,9 +40,28 @@ function MomentItem({moment}) {
         }
     };
 
-    const navigateToMoment = () => {
-        navigate(`/moment/${moment.id}`);
-    };
+
+    useEffect(() => {
+        const fetchComments = () => {
+            return new Promise((resolve, reject) => {
+                getCommentsApi(moment.id)
+                    .then((response) => resolve(response.data))
+                    .catch((error) => {
+                        reject(error);
+                    });
+            });
+        };
+
+        fetchComments()
+            .then((data) => {
+                setComments(data);
+                setError('');
+            })
+            .catch((r) => {
+                setError('Nothing to show here');
+                setComments([]);
+            });
+    }, []);
 
     return (
         <div className="MomentItem" onClick={navigateToMoment}>
@@ -45,16 +69,27 @@ function MomentItem({moment}) {
                 <UserSnippet userId={moment.userCreatorId}/>
                 <h3>{moment.id}</h3>
                 <p>{moment.text}</p>
-                <div className="likeSection">
-                    <div onClick={toggleLike}>
-                        <FontAwesomeIcon
-                            icon={faHeart}
-                            className={`HeartIcon ${isLiked ? "Liked" : ""}`}
-                        />
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <div className="likeSection" style={{marginRight: '10px'}}>
+                        <div onClick={toggleLike}>
+                            <FontAwesomeIcon
+                                icon={faThumbsUp}
+                                className={`FaIcon ${isLiked ? "Liked" : ""}`}
+                            />
+                        </div>
+                        <p style={{marginLeft: "5px"}}>{numLikes}</p>
                     </div>
-                    <p style={{marginLeft: "5px"}}>{numLikes}</p>
+                    <div className="likeSection" >
+                        <div>
+                            <FontAwesomeIcon
+                                icon={faComment}
+                                className={`FaIcon`}
+                            />
+                        </div>
+                        <p style={{marginLeft: "5px"}}>{comments.length}</p>
+                    </div>
                 </div>
-                <CommentList momentId={moment.id} />
+                <CommentList comments={comments}/>
             </div>
         </div>
     );
