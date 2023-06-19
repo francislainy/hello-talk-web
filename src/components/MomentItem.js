@@ -65,13 +65,6 @@ function MomentItem({moment}) {
 
     return (
         <div className="MomentItem" onClick={navigateToMoment}>
-
-            {/*<div style={{display: 'flex', alignItems: 'center'}}>*/}
-            {/*    <h1>MeScreen</h1>*/}
-            {/*    <div style={{margin: 'auto'}}>Add Moment +</div>*/}
-            {/*</div>*/}
-
-
             <div>
                 <UserSnippet userId={moment.userCreatorId}/>
                 <h3>{moment.id}</h3>
@@ -86,7 +79,7 @@ function MomentItem({moment}) {
                         </div>
                         <p style={{marginLeft: "5px"}}>{numLikes}</p>
                     </div>
-                    <div className="likeSection" >
+                    <div className="likeSection">
                         <div>
                             <FontAwesomeIcon
                                 icon={faComment}

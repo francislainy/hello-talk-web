@@ -49,6 +49,17 @@ const getMomentsUserApi = (userId = USER_ID, baseUrl = BASE_URL) => {
     });
 };
 
+const createMomentApi = (userId = USER_ID, baseUrl = BASE_URL, body) => {
+    return axios.post(`${baseUrl}/moments`, body, {
+        baseURL: BASE_URL,
+        headers: {Accept: "application/json"},
+        auth: {
+            username: USERNAME,
+            password: PASSWORD,
+        },
+    });
+};
+
 const getCommentsApi = (momentId, baseUrl = BASE_URL) => {
     return axios.get(`${baseUrl}/moments/${momentId}/comments`, {
         baseURL: BASE_URL,
@@ -61,7 +72,7 @@ const getCommentsApi = (momentId, baseUrl = BASE_URL) => {
 };
 
 const likeMomentApi = (userId, momentId, baseUrl = BASE_URL) => {
-    return axios.post(`${baseUrl}/users/${userId}/like/${momentId}`, null,{
+    return axios.post(`${baseUrl}/users/${userId}/like/${momentId}`, null, {
         baseURL: BASE_URL,
         headers: {Accept: "application/json"},
         auth: {
@@ -71,5 +82,4 @@ const likeMomentApi = (userId, momentId, baseUrl = BASE_URL) => {
     });
 };
 
-
-export {getUserApi, getMomentsApi, getMomentApi, likeMomentApi, getMomentsUserApi, getCommentsApi};
+export {getUserApi, getMomentsApi, getMomentApi, getMomentsUserApi, createMomentApi, likeMomentApi, getCommentsApi};
