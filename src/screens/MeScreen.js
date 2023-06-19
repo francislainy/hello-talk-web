@@ -4,7 +4,7 @@ import VisitorsTab from "../components/VisitorsTab";
 import TabsList from "../components/TabsList";
 import FollowingTab from "../components/FollowingTab";
 import FollowersTab from "../components/FollowersTab";
-
+import {Button} from "@material-ui/core";
 
 function MeScreen() {
     const [selectedTab, setSelectedTab] = useState(0);
@@ -22,9 +22,20 @@ function MeScreen() {
 
     return (
         <div>
-            <h1>MeScreen</h1>
-            <TabsList tabs={tabs} selectedTab={selectedTab} onClick={handleTabClick}/>
-            {tabs[selectedTab].component}
+            {
+                tabs[selectedTab].label === 'Moments' ?
+                    <div>
+                        <div style={{display: 'flex', alignItems: 'center'}}>
+                            <h1>MeScreen</h1>
+                            <Button variant="outlined" style={{margin: "auto"}}> Add moment </Button>
+                        </div>
+                        <TabsList tabs={tabs} selectedTab={selectedTab} onClick={handleTabClick}/>
+                    </div>
+                    : <div>
+                        <h1>MeScreen</h1>
+                        <TabsList tabs={tabs} selectedTab={selectedTab} onClick={handleTabClick}/>
+                    </div>
+            }
         </div>
     );
 }

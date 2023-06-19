@@ -65,6 +65,13 @@ function MomentItem({moment}) {
 
     return (
         <div className="MomentItem" onClick={navigateToMoment}>
+
+            {/*<div style={{display: 'flex', alignItems: 'center'}}>*/}
+            {/*    <h1>MeScreen</h1>*/}
+            {/*    <div style={{margin: 'auto'}}>Add Moment +</div>*/}
+            {/*</div>*/}
+
+
             <div>
                 <UserSnippet userId={moment.userCreatorId}/>
                 <h3>{moment.id}</h3>
