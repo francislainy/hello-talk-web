@@ -16,7 +16,7 @@ function MomentItem({moment}) {
     const navigate = useNavigate();
 
     const navigateToMoment = () => {
-        navigate(`/moment/${moment.id}`);
+        navigate(`/moments/${moment.id}`);
     };
 
     const toggleLike = async (event) => {

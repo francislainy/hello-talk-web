@@ -20,7 +20,7 @@ function App() {
                     <Route path="/connect" exact element={<ConnectScreen/>}/>
                     <Route path="/learn" exact element={<LearnScreen/>}/>
                     <Route path="/me" exact element={<MeScreen/>}/>
-                    <Route path="/moment/:id" exact element={<MomentDetailScreen />} />
+                    <Route path="/moments/:id" exact element={<MomentDetailScreen />} />
                 </Routes>
             </div>
         </Router>
